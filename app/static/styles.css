@@ -1,0 +1,186 @@
+:root {
+  color-scheme: light;
+  --ink: #17212b;
+  --muted: #5b6673;
+  --line: #d9e0e7;
+  --bg: #f5f7f9;
+  --panel: #ffffff;
+  --blue: #1359a7;
+  --green: #0f7b4a;
+  --amber: #9a6200;
+  --red: #b42318;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+.topbar {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px clamp(18px, 4vw, 56px);
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+}
+
+h1, h2, h3, p { margin-top: 0; }
+h1 { margin-bottom: 4px; font-size: 28px; }
+h2 { font-size: 20px; }
+.topbar p { margin-bottom: 0; color: var(--muted); }
+
+nav { display: flex; gap: 8px; flex-wrap: wrap; }
+button, select, input, textarea {
+  font: inherit;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+button {
+  cursor: pointer;
+  padding: 10px 14px;
+}
+button.active, button.primary {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #fff;
+}
+
+main {
+  padding: 28px clamp(18px, 4vw, 56px);
+}
+.panel { display: none; }
+.panel.active { display: block; }
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr);
+  gap: 18px;
+  align-items: start;
+}
+.box {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 18px;
+}
+label {
+  display: grid;
+  gap: 6px;
+  margin: 12px 0;
+  color: var(--muted);
+  font-weight: 600;
+}
+input, textarea, select {
+  width: 100%;
+  padding: 10px 11px;
+  color: var(--ink);
+}
+
+.review-space { margin-top: 22px; }
+.submission-summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.item {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-left: 6px solid var(--green);
+  border-radius: 8px;
+  padding: 16px;
+  margin: 12px 0;
+}
+.item.flagged { border-left-color: var(--amber); }
+.item.rejected { border-left-color: var(--red); }
+.item.needs_review { border-left-color: var(--blue); }
+.item-main {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+}
+.item h3 { margin-bottom: 4px; font-size: 18px; }
+.meta, .reasoning, .override-note { color: var(--muted); }
+.verdict {
+  align-self: start;
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: #eaf1f8;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.flagged .verdict { background: #fff4d8; color: var(--amber); }
+.rejected .verdict { background: #fde8e7; color: var(--red); }
+.compliant .verdict { background: #e6f4ed; color: var(--green); }
+details {
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+  margin-top: 10px;
+}
+summary { cursor: pointer; font-weight: 700; }
+.citation {
+  margin: 10px 0;
+  padding: 10px;
+  background: #f7f9fb;
+  border-radius: 8px;
+}
+.citation strong { display: block; margin-bottom: 4px; }
+pre {
+  white-space: pre-wrap;
+  overflow: auto;
+  max-height: 260px;
+  background: #111827;
+  color: #e5e7eb;
+  border-radius: 8px;
+  padding: 12px;
+}
+.override {
+  display: grid;
+  grid-template-columns: 160px minmax(160px, 1fr) auto;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.history-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.filters { display: flex; gap: 8px; }
+.history-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+.history-card {
+  text-align: left;
+  border-radius: 8px;
+  padding: 14px;
+  background: #fff;
+  border: 1px solid var(--line);
+}
+.history-card strong { display: block; margin-bottom: 4px; }
+.history-card span { color: var(--muted); display: block; }
+.qa form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+}
+.answer {
+  margin-top: 18px;
+  line-height: 1.55;
+}
+
+@media (max-width: 800px) {
+  .topbar, .history-head, .item-main { align-items: stretch; flex-direction: column; }
+  .split, .override, .qa form { grid-template-columns: 1fr; }
+  .filters { flex-direction: column; }
+}

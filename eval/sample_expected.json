@@ -1,0 +1,36 @@
+{
+  "submissions": [
+    {
+      "name": "sample_text_receipt",
+      "employee": {
+        "name": "Eval Reviewer",
+        "grade": 5,
+        "title": "Manager",
+        "department": "Finance",
+        "home_base": "Irvine, CA",
+        "trip_purpose": "Evaluation trip",
+        "trip_dates": "2025-07-01 to 2025-07-02"
+      },
+      "receipts": ["eval/sample_receipt.txt"],
+      "expected_items": [
+        {
+          "filename_contains": "sample_receipt",
+          "verdict": "rejected",
+          "category": "meal",
+          "must_cite": "TEP"
+        }
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "question": "When is premium economy allowed?",
+      "should_refuse": false,
+      "must_cite": "TEP-005"
+    },
+    {
+      "question": "What is the weather tomorrow?",
+      "should_refuse": true
+    }
+  ]
+}

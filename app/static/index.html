@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Northwind Expense Review</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>Northwind Expense Review</h1>
+      <p>AI-assisted pre-review for travel and expense submissions</p>
+    </div>
+    <nav>
+      <button data-tab="new" class="active">New Submission</button>
+      <button data-tab="history">History</button>
+      <button data-tab="policy">Policy Q&A</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="tab-new" class="panel active">
+      <div class="split">
+        <form id="submission-form" class="box">
+          <h2>Start Submission</h2>
+          <label>Employee
+            <select id="employee-select" name="employee_id"></select>
+          </label>
+          <label>Trip purpose
+            <textarea id="purpose" name="purpose" rows="3" placeholder="Purpose defaults from the employee seed data"></textarea>
+          </label>
+          <label>Trip dates
+            <input id="trip-dates" name="trip_dates" placeholder="2025-04-14 to 2025-04-16">
+          </label>
+          <label>Receipts
+            <input id="receipts" name="receipts" type="file" multiple accept=".pdf,.txt,.png,.jpg,.jpeg,.webp">
+          </label>
+          <button type="submit" class="primary">Review Receipts</button>
+        </form>
+
+        <form id="employee-form" class="box">
+          <h2>Create Employee</h2>
+          <label>Name <input name="name" required></label>
+          <label>Grade <input name="grade" type="number" min="1" max="10" value="5"></label>
+          <label>Title <input name="title"></label>
+          <label>Department <input name="department"></label>
+          <label>Home base <input name="home_base"></label>
+          <label>Trip purpose <textarea name="trip_purpose" rows="2"></textarea></label>
+          <label>Trip dates <input name="trip_dates"></label>
+          <button type="submit">Add Employee</button>
+        </form>
+      </div>
+      <div id="current-review" class="review-space"></div>
+    </section>
+
+    <section id="tab-history" class="panel">
+      <div class="history-head">
+        <h2>Submission History</h2>
+        <div class="filters">
+          <select id="history-employee"><option value="">All employees</option></select>
+          <select id="history-status">
+            <option value="">All statuses</option>
+            <option value="reviewed">Reviewed</option>
+            <option value="needs_review">Needs review</option>
+          </select>
+        </div>
+      </div>
+      <div id="history-list" class="history-list"></div>
+      <div id="history-detail" class="review-space"></div>
+    </section>
+
+    <section id="tab-policy" class="panel">
+      <div class="box qa">
+        <h2>Ask The Policy Library</h2>
+        <form id="ask-form">
+          <input id="question" placeholder="Example: When is premium economy allowed?" required>
+          <button type="submit" class="primary">Ask</button>
+        </form>
+        <div id="answer" class="answer"></div>
+      </div>
+    </section>
+  </main>
+
+  <template id="item-template">
+    <article class="item">
+      <div class="item-main">
+        <div>
+          <h3></h3>
+          <p class="meta"></p>
+        </div>
+        <span class="verdict"></span>
+      </div>
+      <p class="reasoning"></p>
+      <details>
+        <summary>Policy citations</summary>
+        <div class="citations"></div>
+      </details>
+      <details>
+        <summary>Extracted receipt text</summary>
+        <pre class="receipt-text"></pre>
+      </details>
+      <form class="override">
+        <select name="verdict">
+          <option value="compliant">Compliant</option>
+          <option value="flagged">Flagged</option>
+          <option value="rejected">Rejected</option>
+          <option value="needs_review">Needs review</option>
+        </select>
+        <input name="comment" placeholder="Override comment" required>
+        <button>Save Override</button>
+      </form>
+      <p class="override-note"></p>
+    </article>
+  </template>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
