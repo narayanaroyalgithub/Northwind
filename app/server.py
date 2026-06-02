@@ -542,6 +542,7 @@ class Handler(BaseHTTPRequestHandler):
                 "policy_clauses": len(POLICIES.clauses),
             })
         if path == "/api/employees":
+            employee_id = parsed.path.split("/")[-1]
             with db() as conn:
                 rows = [
                     row_to_dict(r)
