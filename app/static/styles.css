@@ -1,14 +1,18 @@
 :root {
-  color-scheme: light;
-  --ink: #17212b;
-  --muted: #5b6673;
-  --line: #d9e0e7;
-  --bg: #f5f7f9;
-  --panel: #ffffff;
-  --blue: #1359a7;
-  --green: #0f7b4a;
-  --amber: #9a6200;
-  --red: #b42318;
+  color-scheme: dark;
+
+  --ink: #f3f4f6;
+  --muted: #9ca3af;
+
+  --bg: #111827;
+  --panel: #1f2937;
+
+  --line: #374151;
+
+  --blue: #6366f1;
+  --green: #22c55e;
+  --amber: #f59e0b;
+  --red: #ef4444;
 }
 
 * { box-sizing: border-box; }
@@ -25,25 +29,40 @@ body {
   justify-content: space-between;
   gap: 24px;
   padding: 24px clamp(18px, 4vw, 56px);
-  background: #fff;
+
+  background: #0f172a;
   border-bottom: 1px solid var(--line);
 }
 
 h1, h2, h3, p { margin-top: 0; }
-h1 { margin-bottom: 4px; font-size: 28px; }
+h1 {
+  margin-bottom: 4px;
+  font-size: 34px;
+  font-weight: 700;
+}
 h2 { font-size: 20px; }
-.topbar p { margin-bottom: 0; color: var(--muted); }
+.topbar p {
+  margin-bottom: 0;
+  color: #cbd5e1;
+}
 
 nav { display: flex; gap: 8px; flex-wrap: wrap; }
 button, select, input, textarea {
   font: inherit;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: #fff;
+  background: var(--panel);
+  color: var(--ink);
 }
 button {
   cursor: pointer;
   padding: 10px 14px;
+  font-weight: 600;
+  transition: all .2s ease;
+}
+
+button:hover {
+  opacity: .92;
 }
 button.active, button.primary {
   background: var(--blue);
@@ -111,13 +130,30 @@ input, textarea, select {
   align-self: start;
   border-radius: 999px;
   padding: 6px 10px;
-  background: #eaf1f8;
+  background: #374151;
+  color: var(--ink);
   font-weight: 700;
   white-space: nowrap;
 }
-.flagged .verdict { background: #fff4d8; color: var(--amber); }
-.rejected .verdict { background: #fde8e7; color: var(--red); }
-.compliant .verdict { background: #e6f4ed; color: var(--green); }
+.box,
+.item,
+.history-card {
+  box-shadow: 0 2px 8px rgba(0,0,0,.25);
+}
+.flagged .verdict {
+  background: rgba(245,158,11,.15);
+  color: var(--amber);
+}
+
+.rejected .verdict {
+  background: rgba(239,68,68,.15);
+  color: var(--red);
+}
+
+.compliant .verdict {
+  background: rgba(34,197,94,.15);
+  color: var(--green);
+}
 details {
   border-top: 1px solid var(--line);
   padding-top: 10px;
@@ -126,8 +162,9 @@ details {
 summary { cursor: pointer; font-weight: 700; }
 .citation {
   margin: 10px 0;
-  padding: 10px;
-  background: #f7f9fb;
+  padding: 10px 12px;
+  background: rgba(99,102,241,.12);
+  border-left: 3px solid var(--blue);
   border-radius: 8px;
 }
 .citation strong { display: block; margin-bottom: 4px; }
@@ -164,8 +201,18 @@ pre {
   text-align: left;
   border-radius: 8px;
   padding: 14px;
-  background: #fff;
+  background: var(--panel);
   border: 1px solid var(--line);
+}
+.history-card,
+.box,
+.item {
+  transition: all .2s ease;
+}
+
+.history-card:hover,
+.box:hover {
+  transform: translateY(-1px);
 }
 .history-card strong { display: block; margin-bottom: 4px; }
 .history-card span { color: var(--muted); display: block; }
