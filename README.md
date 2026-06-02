@@ -3,7 +3,11 @@
 
 An AI-assisted expense pre-review system for Northwind Logistics. A finance reviewer uploads employee receipts and the system surfaces compliance verdicts, policy citations, and flags issues — so the human reviewer can trust, override, or escalate.
 
-**Live demo:** [https://northwind-expense.vercel.app](https://northwind-expense.vercel.app) _(replace with your deployed URL)_
+## Live Demo
+
+**Application:** https://northwind-expense-reviewer.vercel.app
+
+**Source Code:** https://github.com/narayanaroyalgithub/Northwind
 
 ---
 
